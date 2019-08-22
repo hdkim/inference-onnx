@@ -28,7 +28,7 @@ _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 class Inferencer(inference_pb2_grpc.InferencerServicer):
 
     def Inference(self, request, context):
-        return inference_pb2_grpc.InferenceResponse(message='Hello, %s!' % request.name)
+        return inference_pb2.InferenceResponse(message='Hello, %s!' % request.name)
 
 
 def serve():
