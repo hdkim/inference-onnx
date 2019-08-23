@@ -108,11 +108,9 @@ def inference(image_binary):
     input_data = preprocess(image_data)
     raw_result = None
 
-    for i in range(test_cnt):
-      start = time.time()
-      raw_result = session.run([], {input_name: input_data})
-      end = time.time()
-      print("test", i, ": ", str(end - start)) 
+    start = time.time()
+    raw_result = session.run([], {input_name: input_data})
+    end = time.time()
     res = postprocess(raw_result)
 
     inference_time = np.round((end - start) * 1000, 2)
