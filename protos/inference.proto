@@ -29,7 +29,7 @@ service Inferencer {
 
 message InferenceRequest {
   string model = 1;
-  string data = 2;
+  bytes data = 2;
 }
 
 message InferenceResponse {
