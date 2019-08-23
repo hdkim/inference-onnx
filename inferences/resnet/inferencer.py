@@ -19,7 +19,8 @@ import io
 #urllib.request.urlretrieve(onnx_model_url, filename="resnet50v2.tar.gz")
 #urllib.request.urlretrieve(imagenet_labels_url, filename="imagenet-simple-labels.json")
 
-test_data_dir = 'resnet50v2/test_data_set'
+model_path = 'inferences/resnet/resnet50v2/resnet50v2.onnx'
+test_data_dir = 'inferences/resnet/resnet50v2/test_data_set'
 test_data_num = 3
 test_cnt = 1000
 
@@ -50,7 +51,7 @@ for i in range(test_data_num):
 print('Loaded {} reference outputs successfully.'.format(test_data_num))
 
 # Run the model on the backend
-session = onnxruntime.InferenceSession('resnet50v2/resnet50v2.onnx', None)
+session = onnxruntime.InferenceSession(model_path, None)
 
 # get the name of the first input of the model
 input_name = session.get_inputs()[0].name  
