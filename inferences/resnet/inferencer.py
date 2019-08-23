@@ -19,6 +19,7 @@ import io
 #urllib.request.urlretrieve(onnx_model_url, filename="resnet50v2.tar.gz")
 #urllib.request.urlretrieve(imagenet_labels_url, filename="imagenet-simple-labels.json")
 
+label_path = 'inferences/resnet/imagenet-simple-labels.json'
 model_path = 'inferences/resnet/resnet50v2/resnet50v2.onnx'
 test_data_dir = 'inferences/resnet/resnet50v2/test_data_set'
 test_data_num = 3
@@ -94,7 +95,7 @@ def softmax(x):
 def postprocess(result):
     return softmax(np.array(result)).tolist()
 
-labels = load_labels('imagenet-simple-labels.json')
+labels = load_labels(label_path)
 
 def inference(image_binary):
     image = Image.open(io.BytesIO(image_binary))
