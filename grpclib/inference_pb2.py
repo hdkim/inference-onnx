@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='inference',
   syntax='proto3',
   serialized_options=_b('\n\032io.grpc.examples.inferenceB\016InferenceProtoP\001\242\002\003INF'),
-  serialized_pb=_b('\n\x0finference.proto\x12\tinference\" \n\x10InferenceRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"$\n\x11InferenceResponse\x12\x0f\n\x07message\x18\x01 \x01(\t2V\n\nInferencer\x12H\n\tInference\x12\x1b.inference.InferenceRequest\x1a\x1c.inference.InferenceResponse\"\x00\x42\x34\n\x1aio.grpc.examples.inferenceB\x0eInferenceProtoP\x01\xa2\x02\x03INFb\x06proto3')
+  serialized_pb=_b('\n\x0finference.proto\x12\tinference\"/\n\x10InferenceRequest\x12\r\n\x05model\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\t\"#\n\x11InferenceResponse\x12\x0e\n\x06result\x18\x01 \x01(\t2V\n\nInferencer\x12H\n\tInference\x12\x1b.inference.InferenceRequest\x1a\x1c.inference.InferenceResponse\"\x00\x42\x34\n\x1aio.grpc.examples.inferenceB\x0eInferenceProtoP\x01\xa2\x02\x03INFb\x06proto3')
 )
 
 
@@ -34,8 +34,15 @@ _INFERENCEREQUEST = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='name', full_name='inference.InferenceRequest.name', index=0,
+      name='model', full_name='inference.InferenceRequest.model', index=0,
       number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='data', full_name='inference.InferenceRequest.data', index=1,
+      number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -53,7 +60,7 @@ _INFERENCEREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=30,
-  serialized_end=62,
+  serialized_end=77,
 )
 
 
@@ -65,7 +72,7 @@ _INFERENCERESPONSE = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='message', full_name='inference.InferenceResponse.message', index=0,
+      name='result', full_name='inference.InferenceResponse.result', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -83,8 +90,8 @@ _INFERENCERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=64,
-  serialized_end=100,
+  serialized_start=79,
+  serialized_end=114,
 )
 
 DESCRIPTOR.message_types_by_name['InferenceRequest'] = _INFERENCEREQUEST
@@ -114,8 +121,8 @@ _INFERENCER = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=102,
-  serialized_end=188,
+  serialized_start=116,
+  serialized_end=202,
   methods=[
   _descriptor.MethodDescriptor(
     name='Inference',

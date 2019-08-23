@@ -22,13 +22,21 @@ import grpc
 import grpclib.inference_pb2 as inference_pb2
 import grpclib.inference_pb2_grpc as inference_pb2_grpc
 
+import inferences.resnet.inferencer as resnet_inferencer
+
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
+
+inferencers = {'resnet': resnet_inferencer.inference}
 
 
 class Inferencer(inference_pb2_grpc.InferencerServicer):
 
     def Inference(self, request, context):
-        return inference_pb2.InferenceResponse(message='Hello, %s!' % request.name)
+        model = request.model
+        data = request.data
+        res = inferencers[model](data)
+        print("request for model:", model, ", res:", res)
+        return inference_pb2.InferenceResponse(result=res)
 
 
 def serve():

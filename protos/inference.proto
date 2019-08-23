@@ -28,9 +28,10 @@ service Inferencer {
 }
 
 message InferenceRequest {
-  string name = 1;
+  string model = 1;
+  string data = 2;
 }
 
 message InferenceResponse {
-  string message = 1;
+  string result = 1;
 }

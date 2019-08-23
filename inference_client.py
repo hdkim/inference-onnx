@@ -21,11 +21,14 @@ import grpc
 import grpclib.inference_pb2 as inference_pb2
 import grpclib.inference_pb2_grpc as inference_pb2_grpc
 
+import inferences.util as util
+
 
 def run():
     with grpc.insecure_channel('localhost:50051') as channel:
         stub = inference_pb2_grpc.InferencerStub(channel)
-        response = stub.Inference(inference_pb2.InferenceRequest(name='you'))
+        binary = util.image_to_byte_array('inferences/resnet/images/dog.jpg')
+        response = stub.Inference(inference_pb2.InferenceRequest(model='resnet', data=binary))
     print("client received: " + response.message)
 
 
